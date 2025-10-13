@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gestion_tutorias',  
+    'gestion_tutorias',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'gestion_tutorias.Usuario'
+
+REST_AUTH ={
+    'USE_JWT':True,
+    'JWT_AUTH_COOKIE':'djangojwtauth_cookie',
+    'JWT_AUTH_REFRESH_COOKIE':'djangojwtauth_refresh_cookie'
+}
+
+REST_FRAMEWORK= {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
