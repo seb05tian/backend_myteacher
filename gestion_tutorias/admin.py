@@ -6,7 +6,7 @@ from .models import Usuario, Categoria, Curso, Tutoria, Reseña, Pago, Reserva
 @admin.register(Usuario)
 class UsuarioAdmin(UserAdmin):
     model = Usuario
-    list_display = ('id', 'username', 'email', 'rol', 'especialidad', 'telefono', 'is_active', 'is_staff')
+    list_display = ('id', 'username', 'email', 'descripcion', 'rol', 'especialidad', 'telefono', 'is_active', 'is_staff')
     search_fields = ('username', 'email', 'rol')
     list_filter = ('rol', 'is_active', 'is_staff')
     fieldsets = (
@@ -30,7 +30,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
-    list_display = ('id_curso', 'nombre', 'tutor', 'categoria')
+    list_display = ('id_curso', 'nombre', 'tutor','modalidad', 'categoria')
     search_fields = ('nombre',)
     list_filter = ('categoria', 'tutor')
 
@@ -44,7 +44,7 @@ class ReseñaAdmin(admin.ModelAdmin):
 
 @admin.register(Tutoria)
 class TutoriaAdmin(admin.ModelAdmin):
-    list_display = ('id_tutoria', 'curso', 'fecha_tutoria', 'duracion', 'estado')
+    list_display = ('id_tutoria', 'curso', 'fecha_tutoria','modalidad_tutoria', 'duracion', 'estado')
     list_filter = ('estado', 'curso')
 
 

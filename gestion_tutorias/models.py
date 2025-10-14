@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
+    
     email = models.EmailField(unique=True)  
     telefono = models.CharField(max_length=255, blank=True, null=True)
     especialidad = models.CharField(max_length=255, blank=True, null=True)
@@ -13,6 +14,7 @@ class Usuario(AbstractUser):
             ('admin', 'Administrador'),
         ],
     )
+    descripcion = models.TextField(blank=True, null=True)
     calificacion_promedio = models.DecimalField(
         max_digits=5, decimal_places=2, blank=True, null=True
     )
@@ -38,6 +40,15 @@ class Curso(models.Model):
     id_curso = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField(blank=True, null=True)
+    modalidad = models.CharField(
+        max_length=50,
+        choices=[
+            ('presencial', 'Presencial'),
+            ('virtual', 'Virtual'),
+            ('ambas', 'Ambas'),
+        ],
+    )
+    ciudad = models.CharField(max_length=255, blank=True, null=True)
     tutor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='cursos')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='cursos')
 
@@ -60,6 +71,13 @@ class Tutoria(models.Model):
     duracion = models.IntegerField(blank=True, null=True)
     fecha_tutoria = models.DateField()
     estado = models.BooleanField(default=True)
+    modalidad_tutoria = models.CharField(
+        max_length=50,
+        choices=[
+            ('presencial', 'Presencial'),
+            ('virtual', 'Virtual'),
+        ],
+    )
     reseña = models.ForeignKey(Reseña, on_delete=models.SET_NULL, null=True, blank=True, related_name='tutorias')
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='tutorias')
 

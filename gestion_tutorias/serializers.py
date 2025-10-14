@@ -1,9 +1,9 @@
 from rest_framework import serializers
-
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.password_validation import validate_password
+from .models import Usuario, Categoria, Curso, Tutoria, Reseña, Pago, Reserva
 
 User = get_user_model()
 
@@ -55,3 +55,38 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = '__all__'
+
+class CategoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categoria
+        fields = '__all__'
+
+class CursoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Curso
+        fields = '__all__'
+
+class ReseñaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reseña
+        fields = '__all__'
+
+class TutoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tutoria
+        fields = '__all__'
+
+class PagoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pago
+        fields = '__all__'
+
+class ReservaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reserva
+        fields = '__all__'
