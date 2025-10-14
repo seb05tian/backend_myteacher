@@ -64,12 +64,22 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
-        fields = '__all__'
+        fields = ["id_categoria", "nombre", "descripcion"]
 
 class CursoSerializer(serializers.ModelSerializer):
+    # El tutor lo setea el servidor, solo lectura
+    tutor = serializers.PrimaryKeyRelatedField(read_only=True)
+    # Enviamos el id de la categoría desde el FE
+    categoria = serializers.PrimaryKeyRelatedField(
+        queryset=Categoria.objects.all()
+    )
+
     class Meta:
         model = Curso
-        fields = '__all__'
+        fields = [
+            "id_curso", "nombre", "descripcion", "modalidad",
+            "ciudad", "precio", "tutor", "categoria"
+        ]
 
 class ReseñaSerializer(serializers.ModelSerializer):
     class Meta:

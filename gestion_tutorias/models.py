@@ -49,6 +49,7 @@ class Curso(models.Model):
         ],
     )
     ciudad = models.CharField(max_length=255, blank=True, null=True)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
     tutor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='cursos')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='cursos')
 
