@@ -1,8 +1,31 @@
+# --- Python ---
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
+*.pyd
 
+# --- Virtual environments ---
+.venv/
 venv/
-.env
 env/
+ENV/
 *.bat
+
+# --- Environment & config files ---
+.env
+*.env
+
+# --- Django specific ---
+db.sqlite3
+*.log
+media/
+staticfiles/
+local_settings.py
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+
+# --- OS-specific ---
+.DS_Store
+Thumbs.db
