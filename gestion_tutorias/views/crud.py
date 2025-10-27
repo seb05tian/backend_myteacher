@@ -41,6 +41,7 @@ class CursoViewSet(viewsets.ModelViewSet):
         user = self.request.user
         if getattr(user, "rol", None) != "tutor":
             user.rol = "tutor"
+            
             user.save(update_fields=["rol"])
         return curso
 
