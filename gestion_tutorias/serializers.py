@@ -35,8 +35,8 @@ class LoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "is_staff", "is_superuser"]
-        read_only_fields = ["id", "is_staff", "is_superuser"]
+        fields = ["id", "username", "email", "rol", "descripcion", "telefono", "is_staff", "is_active"]
+        read_only_fields = ["id", "username", "email", "rol", "descripcion", "telefono", "is_staff", "is_active"]
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
