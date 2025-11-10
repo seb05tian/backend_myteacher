@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,6 +142,7 @@ REST_AUTH ={
 REST_FRAMEWORK= {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
@@ -151,3 +153,13 @@ CORS_ALLOWED_ORIGINS = [
     #"https://deploy.com",  
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+# JWT: duración de tokens
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
+
+# Sesiones de Django (para SessionAuthentication y admin)
+SESSION_COOKIE_AGE = 60 * 60 * 2  # 2 horas
+SESSION_SAVE_EVERY_REQUEST = False
