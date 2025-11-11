@@ -16,7 +16,17 @@ ENV/
 *.env
 
 # --- Django specific ---
+# DB files (SQLite)
 db.sqlite3
+db.sqlite3-journal
+db.sqlite3-shm
+db.sqlite3-wal
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+*.sqlite
+*.db
 *.log
 media/
 staticfiles/
