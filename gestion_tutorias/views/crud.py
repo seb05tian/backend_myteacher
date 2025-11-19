@@ -21,6 +21,11 @@ from ..models_messaging import Conversacion, Mensaje
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
 from django.utils import timezone
+from rest_framework.generics import ListAPIView
+from django_filters.rest_framework import DjangoFilterBackend
+from ..models import Curso
+from ..serializers import CursoSerializer
+
 User = get_user_model()
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
@@ -298,3 +303,10 @@ class MensajeViewSet(viewsets.ModelViewSet):
             conv.unread_tutor = (conv.unread_tutor or 0) + 1
         conv.save(update_fields=['unread_tutor', 'unread_estudiante', 'updated_at'])
 
+class CursoFilterView(ListAPIView):
+    serializer_class = CursoSerializer
+    queryset = Curso.objects.all()
+
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['nombre']  # for ?search=
+    filterset_fields = ['categoria', 'ciudad', 'modalidad']  # for ?categoria=, etc.

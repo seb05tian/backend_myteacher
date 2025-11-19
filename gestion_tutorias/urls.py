@@ -8,7 +8,7 @@ from .views.crud import (
     TutoriaViewSet, ReseñaViewSet, PagoViewSet, ReservaViewSet,
     DisponibilidadSemanalViewSet, BloqueoHorarioViewSet,
     ConversacionViewSet, MensajeViewSet,
-    SolicitudReservaViewSet,
+    SolicitudReservaViewSet,CursoFilterView
 )
 
 router = DefaultRouter()
@@ -39,7 +39,7 @@ urlpatterns = [
     # Alias comunes por compatibilidad
     path('refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('jwt/refresh/', TokenRefreshView.as_view(), name='jwt_refresh'),
+    path('filtrar-cursos/', CursoFilterView.as_view(), name='filtrar-cursos'),
     path('crud/', include(router.urls)),
 ]
-
 
